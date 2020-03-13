@@ -5,7 +5,7 @@ date:   2019-11-24 16:32:36 +0100
 categories: jekyll update
 ---
 
-![](/assets/images/ub2.jpg) | ![](/assets/images/isglobal.jpg) | ![](/assets/images/ana.png) | ![](/assets/images/descarga.jpg)
+![](/img/ub2.jpg) | ![](/assets/images/isglobal.jpg) | ![](/assets/images/ana.png) | ![](/assets/images/descarga.jpg)
 
 ## Introduction ##
 
@@ -45,7 +45,7 @@ The information of the unofficial stations was similar, including variables such
 altitude but only having the maximum and minimum temperature for the place. In the next figure one can observe the 
 positions in Barcelona of the official stations, in red, and the unofficial stations, in green:
 
-<div style="text-align: center"><img src="/assets/images/4sensorsfull.png" /></div>
+<div style="text-align: center"><img src="/img/4sensorsfull.png" /></div>
 
 
 ## Temperature Prediction ##
