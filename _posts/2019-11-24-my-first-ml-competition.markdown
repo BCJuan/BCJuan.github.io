@@ -4,6 +4,9 @@ title: 'My First Machine Learning Competition: Barcelona Climate Change Challeng
 date: '2019-11-24 16:32:36 +0100'
 categories: jekyll update
 published: true
+subtitle: >-
+  How many more sensors should we add to improve temperature prediction in
+  Barcelona? Where should we place them?
 ---
 
 ![ub2.jpg]({{site.baseurl}}/img/ub2.jpg) | ![]({{site.baseurl}}/img/isglobal.jpg) | ![]({{site.baseurl}}/img/ana.png) | ![]({{site.baseurl}}/img/descarga.jpg)
