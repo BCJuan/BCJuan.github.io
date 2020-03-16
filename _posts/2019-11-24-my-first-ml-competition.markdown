@@ -1,11 +1,15 @@
 ---
 layout: post
-title:  "My First Machine Learning Competition: Barcelona Climate Change Challenge 2019"
-date:   2019-11-24 16:32:36 +0100
+title: 'My First Machine Learning Competition: Barcelona Climate Change Challenge 2019'
+date: '2019-11-24 16:32:36 +0100'
 categories: jekyll update
+published: true
+subtitle: >-
+  How many more sensors should we add to improve temperature prediction in
+  Barcelona? Where should we place them?
 ---
 
-![](img/ub2.jpg) | ![](img/isglobal.jpg) | ![](img/ana.png) | ![](img/descarga.jpg)
+![ub2.jpg]({{site.baseurl}}/img/ub2.jpg) | ![]({{site.baseurl}}/img/isglobal.jpg) | ![]({{site.baseurl}}/img/ana.png) | ![]({{site.baseurl}}/img/descarga.jpg)
 
 ## Introduction ##
 
@@ -45,7 +49,7 @@ The information of the unofficial stations was similar, including variables such
 altitude but only having the maximum and minimum temperature for the place. In the next figure one can observe the 
 positions in Barcelona of the official stations, in red, and the unofficial stations, in green:
 
-<div style="text-align: center"><img src="img/4sensorsfull.png" /></div>
+<div style="text-align: center"><img src="{{site.baseurl}}/img/4sensorsfull.png" /></div>
 
 
 ## Temperature Prediction ##
@@ -64,7 +68,7 @@ All the process has been carried out using Pandas, Numpy, Scikit-Learn and Matpl
 
 For the first step, we based our selection of initial features on correlation plots, such as the following image:
 
-<div style="text-align: center"><img src="img/corr.png" /></div>
+<div style="text-align: center"><img src="{{site.baseurl}}/img/corr.png" /></div>
 
 where we see that variables such as solar radiation have an important correlation with temperature.
 
@@ -78,13 +82,13 @@ One example was to try to add green coverage of Barcelona as a new feature. The 
 resemblance to the error produced by the model. In the next figure, on the left we can observe the green coverage and, on the right, the error 
 produced by the model.
 
-![](img/green.png) | ![](img/error.png)|
+![]({{site.baseurl}}/img/green.png) | ![]({{site.baseurl}}/img/error.png)|
 
 Another point that we noticed is that the distribution of themperatures was not lineal, and using a linear model, we lost the possibility
 to cover certain parts of Barcelona. In the next figure, on the left, we can see a heatmap of the mean minimum temperature of Barcelona, and
 on the right, we can see the average mean temperature of all Barcelona and the one from the official stations. 
 
-| ![](img/tmin.png) | ![](img/tdist.png)|
+| ![]({{site.baseurl}}/img/tmin.png) | ![]({{site.baseurl}}/img/tdist.png)|
 
 On the figure of the left, we can appreciate that the zones in the up north of Barcelona are way colder than other parts of Barcelona. In the image
 on the right we can observe that the distribution of mean temperatures losses its linearity in the colder temperatures. If we relate this
@@ -103,7 +107,7 @@ In the last image we can observe the new grid as the Barcelona scattered shape, 
 However, to evaluate the placement of sensors a restriction was established. The temperature prediction for each grid point
 had to be a linear combination of the temperatures of all the already placed sensors. That is:
 
-<div style="text-align: center"><img src="img/formula.png" /></div>
+<div style="text-align: center"><img src="{{site.baseurl}}/img/formula.png" /></div>
 
 where *p* indexes the point and *i* indexes the sensors. Hence, the temperature for each point had to be computed as a linear regression. 
 The explanatory variables were then the temperatures from the official and added sensors.
@@ -127,7 +131,7 @@ The pseudocode would be something like:
 With this procedure we placed the new 10 sensors. In the next figure, it can be observed the order and the position where they were
 placed:
 
-![Alt Text](img/line.gif)
+![Alt Text]({{site.baseurl}}/img/line.gif)
 
 This placement raised two main questions:
 + Why the new sensors were placed at boundaries?
@@ -139,7 +143,7 @@ can see the mean average squared error for all the points and its standard devia
 since we can observe that the benefit of adding one new sensor decreases substantially after the third sensor. This figure extended
 to more sensors could indicate how many sensors should we place until obtaining redundance.
 
-| ![Alt Text](img/error_1.gif) | ![Alt Text](img/error_2.png)  |
+| ![Alt Text]({{site.baseurl}}/img/error_1.gif) | ![Alt Text]({{site.baseurl}}/img/error_2.png)  |
 
 One important drawback of this strategy is that we are placing the new sensor where the maximum error exists. That does not necessarily
 mean that the place is correlated with its surroundings and could be beneficial for predictions. Hence, including in the selection
@@ -150,7 +154,7 @@ its viccinity. In the next image we see the error for each point plotted against
 with respect all the other points. As seen we were choosing the point with the greatest error, the one on the far right. Maybe choosing 
 a point marked with a star, which had a greater correlation with others, would have been a better option.
 
-<div style="text-align: center"><img src="img/correlation_trade.png" /></div>
+<div style="text-align: center"><img src="{{site.baseurl}}/img/correlation_trade.png" /></div>
 
 Another interesting comment is that almost all points were placed on the margins of the map. This might be due to the contour conditions
 of the original model which generated the temperatures. An interesting step then would have been to forbid the marginal areas for sensor placement. 
@@ -170,4 +174,4 @@ is the simplest one.
 1. [Hyperopt](https://github.com/hyperopt/hyperopt)
 2. [AutoML](automl.org)
 
-<div style="text-align: center"><img src="img/EJ5J6TMXsAEdcUC.jpg" /></div>
+<div style="text-align: center"><img src="{{site.baseurl}}/img/EJ5J6TMXsAEdcUC.jpg" /></div>
