@@ -1,16 +1,23 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Why you would want to go on a team with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Hi! My name is Juan Borrego Carazo. I consider myself something between a programmer and some kind of mathematician. I studied physics but I made a turn in my career and
+devoted myself to programming and, more specifically, to machine learning and AI programming. Currently, I am carrying out a doctorate in engineering in applications of neural networks
+for embedded hardware in the automotive sector. 
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+I consider myself a dynamic person with a high level of curiosity. However, and due to that last point, I try to maintain a high degree of focus on current projects to avoid being lost in many tasks. I am a hard worker and I absolutely love programming and anything related to it (there are areas more preferred than others, of course). Currently I am trying to find a tema for Kaggle competitions, trying to improve communication skills with this blog and also developing  programming skills in general ([Stackoverflow](https://stackoverflow.com/users/9875707/bcjuan), Github
 
-What else do you need?
+Technically, I am interested, in a global scope, about machine learning, and more specifically, deep learning. I have worked mostly on computer vision problems but I would also love to tackle NLP.
 
-### my history
+## Current Projects
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
++ 2D Gesture Recognition with capacitive sensors
++ 3D Gesture Recognition with capacitive sensors
++ Automatic NAS with Gaussian processes for embedded hardware
+
+### CV
+
+Check my CV here.
