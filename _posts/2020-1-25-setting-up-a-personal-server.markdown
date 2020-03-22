@@ -61,21 +61,41 @@ ssh -p <port_number> <user_name>@<ip>
 
 The first time it will ask if we want to connect to that machine and, of course, we will say yes. If everything goes fine we should be able to connect without problems.
 
+If you had any problems there are [tons][2] of webs describing how to set up your ssh service.
+
 ### 2. Configuring the ssh service
 
 In `etc/ssh/sshd_config` is the configuration of the ssh server. There are lots of options but I have only tackled some of them:
 
-+ Port: port at which the service will be connected. Be aware when you choose a number that some ports are already in use. The recomendation is to use the standard
-one, 22, or a number beyond 50000. In [here][reference] you can see that some ports are for dynamic usage.
-+ X11Forwarding: if you want to allow to forward the GUI.
-+ PasswordAuthentication: if you want to alow accesing the computer with a password. We will leave it by now as a yes. Afterwards, we will allow only connections by ssh-keys use.
++ **Port**: port at which the service will be connected. Be aware when you choose a number that some ports are already in use. The recomendation is to use the standard
+one, 22, or a number beyond 50000. In [here][1] you can see that some ports are for dynamic usage.
++ **X11Forwarding**: if you want to allow to forward the GUI.
++ **PasswordAuthentication**: if you want to alow accesing the computer with a password. We will leave it by now as a yes. Afterwards, we will allow only connections by ssh-keys use.
 
 There are other configurations such as `AuthorizedKeysFile` which we will use later. At the moment it will be sufficient with those three options
 
 ### 3. Opening to the internet
 
+Now we have a service which is only working in local. To open to the whole internet (with the risks that it conveys) we must follow certain steps. 
+
 #### Public IP
+
+If we go to a browser and write `ip` it will appear our public ip. Or you can just check it [here][3]. Basically this is our public ip, that is, the direction of the entry point to our LAN. Or what is the same the direction by which our router is identified. 
+
+Hence, two questions arise: 
+
++ How do we connect our computer to the ip of the router?
++ IS this direction fixed?
+
+For the first question we will need something called port forwarding. This means that when we call our router with a ssh petition at certain ports he will know to which ports (i.e. our computer) send the petition. In the second case, the answer is not and we will have to activate something called dynamic DNS to ensure that we can connect any time.
+
+**NOTE**:Savyy computer experts, please do not kill me: this is just a dissemination and learning experience blog entry. 
+
 #### Port forwarding
+
+First, let's forwar ports from the router to the ports of our computer where the service is active.
+
+
 #### Making the ip static
 #### Dynamic DNS
 #### ssh key
@@ -84,7 +104,7 @@ There are other configurations such as `AuthorizedKeysFile` which we will use la
 
 + installing ssh
 + configuring ssh, ports and etc
-+ looking for ips and connecting in local
++ looking for ips and connec ting in local
 + opneing to the internet
 + public ip
 + dynamic dns in web and in the router
@@ -94,7 +114,9 @@ There are other configurations such as `AuthorizedKeysFile` which we will use la
 
 ## References
 
-+ [reference](https://hostadvice.com/how-to/how-to-change-your-ssh-port-from-the-default-for-security/)
++ [1]: https://hostadvice.com/how-to/how-to-change-your-ssh-port-from-the-default-for-security/ "Recommended port numbers"
++ [2]: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/ "Set up ssh"
++ [3]: https://whatismyipaddress.com/ "my public ip"
 Note: maybe your router allows wake on lan,  mine not --> part 2: raspberry for wake s
 
 
