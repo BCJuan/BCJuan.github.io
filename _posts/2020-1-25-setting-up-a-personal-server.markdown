@@ -89,27 +89,64 @@ Hence, two questions arise:
 
 For the first question we will need something called port forwarding. This means that when we call our router with a ssh petition at certain ports he will know to which ports (i.e. our computer) send the petition. In the second case, the answer is not and we will have to activate something called dynamic DNS to ensure that we can connect any time.
 
-**NOTE**:Savyy computer experts, please do not kill me: this is just a dissemination and learning experience blog entry. 
-
 #### Port forwarding
 
-First, let's forwar ports from the router to the ports of our computer where the service is active.
+First, let's forward ports from the router to the ports of our computer where the service is active. First, we have to access our router configuration page and for this we need the ip of our router. With a [one-liner][4]
 
+```
+netstat -nr | awk '$1 == "0.0.0.0"{print$2}'
+```
+
+we can obtain it. If we introduce it in the web browser we can reach the router configuration page. There we have to do the following: search for the port forwarding configuration. In my case it was under the NAT section. There, we have to establish several things:
+
++ **The service**: in our case the SSH
++ **The external ports**: you can choose some ports outside the main usage range
++ **The internal ports**: the ports that you defined in the sshd configuration
++ **The internal ip**: the ip towards which the request must be forwarded
++ **The protocols**: I have defined both TCP and UDP, but can work just with TCP
+
+In the ports it will ask for a range but you can put the same value for the start and for the end. And that is it, we have told our router that, when a ssh request comes to it it must forward it to the specific ip and port.
+
+[Here][6] you can find a nice explanation of port forwarding and how to configure it in a sample router. However, each router is a world and you will ahve to find your own way.
 
 #### Making the ip static
+
+In our router we have to do something else for this setup to work. The local ip of the computer that we have established with the `ssh-server` is not static by dynamic. That is, it is changed regularly by the router with a protocol called [DHCP (Dynamic Host Configuration Protocol)][5], which is in charge of managing the distribution of ips over a network.
+
+As we want our computer to be reached, we need to establish that ip as fixed. Hence, in our router configuration we must look for something such as `Static IP List` or similar. In my case it was under the section LAN and under the name Static IP Lease List. There we introduce the current IP of the computer where we ahve the ssh-server, as it will not enter in the next reorganization of ips.
+
+In the next image we can see the configuration that I have: in the `IP Address` I have the local ip of the computer with the ssh server (recall that we know how to find it from the VNC section)
+
+![]({{site.baseurl}}/img/ssh-server-1/static_local_ip.png)
+
+[Here][7] you can find extra counsels and recommendations for making your ip static.
+
 #### Dynamic DNS
+
+Until now we have:
+
++ Set up the ssh server
++ Configured it
++ Established the port forwarding directives
++ Made the local ip of the computer with ssh server static
+
+By now, we can ssh our computer from an outside point of our network (for example, give internet to your laptop with your mobile phone and try to reach the computer), just by:
+
+```
+ssh -p <external port of router> <username>@<external ip>
+```
+
+Perfect. Is there any problem? Yes, of course. In the same way that your router manages the local ips with a DHCP server in your local network, your external ip is changed dynamically by your ISP (Internet Service Provider). Hence we have to find a way to fix it and avoid the dynamism or go around that. 
+
+The solution does not fix the ip but really goes around.
+
+**DYNAMIC DNS with NOIP**
+
 #### ssh key
 
 
 
-+ installing ssh
-+ configuring ssh, ports and etc
-+ looking for ips and connec ting in local
-+ opneing to the internet
-+ public ip
-+ dynamic dns in web and in the router
-+ making the local computer ip static in the router
-+ port forwarding
+
 + ssh keys
 
 ## References
@@ -117,6 +154,12 @@ First, let's forwar ports from the router to the ports of our computer where the
 + [1]: https://hostadvice.com/how-to/how-to-change-your-ssh-port-from-the-default-for-security/ "Recommended port numbers"
 + [2]: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/ "Set up ssh"
 + [3]: https://whatismyipaddress.com/ "my public ip"
++ [4]: https://askubuntu.com/questions/605424/how-to-show-just-the-ip-address-of-my-router "ip of router"
++ [5]: https://www.lifewire.com/what-is-dhcp-2625848 "dhcp"
++ [6]: https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/ "Port forwarding"
++ [7]: https://www.howtogeek.com/184310/ask-htg-should-i-be-setting-static-ip-addresses-on-my-router/ "static local ip"
+
+
 Note: maybe your router allows wake on lan,  mine not --> part 2: raspberry for wake s
 
 
