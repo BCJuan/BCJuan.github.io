@@ -138,27 +138,85 @@ ssh -p <external port of router> <username>@<external ip>
 
 Perfect. Is there any problem? Yes, of course. In the same way that your router manages the local ips with a DHCP server in your local network, your external ip is changed dynamically by your ISP (Internet Service Provider). Hence we have to find a way to fix it and avoid the dynamism or go around that. 
 
-The solution does not fix the ip but really goes around.
+The solution does not fix the ip but really goes around. 
 
-**DYNAMIC DNS with NOIP**
+First, DNS (Domain Name System) is a mapping between IPs and Domain Names. Fro example, the IP of the Domain Name Facebook.com is X. Hence, instead of typing the ip of the service or web we are trying to reach we just write the domain name and a DNS Server resolves the IP. For a company it is easy to set the domain name and forget about the ip since the IP is static. However, for a residencial service, your ISP has a pool of IPs and it changes your IP dinamically. Thus, your external IP is changing regularly. What we can do is to set up a Domain Name which will follow the changes in the IP from now on. This is called Dynamic DNS and is easy and free (up to a point) to [set up][8] .
+
+There are a lot of services [out there][9]. I have chosen NoIP but you could choose the one you prefer. There we have to put our current IP and define a Domain Name (or Hostname). But that is not all, we also have to tell our router that we have associated its external IP with a Dynamic DNS service. For this we have to search in the router's configuration page,in the same way as before, for a section devoted to this topic as in the following image:
+
+![]({{site.baseurl}}/img/dyndns.png)
+
+where it requires the name of the DYn DNS service, the hostname and of course the username and passwords of the DYn DNs service.
+
+With this last step we have a fully functioning ssh server, accesible from everywhere in the internet. Wait... Everywhere? Yes, that is right we have our server listening for ssh requests on a certain port. Maybe we should make it as secure as possible. Yes, and that is the reason for the next and final step.
 
 #### ssh key
 
+Now the server is accesible as: `ssh -p <port> <username>@<hostname>`. It demands our user password and that is it: we are in. However, this is not the most secure way to access our server. A better and more secure way is with [SSH keys][10].
+
+SSH keys work in pairs: public and private. The public key can be shared and made public but the private should rest well preserved. It can (should) be locked down with another password indeed. 
+
+To use SSK keys, what we do is the following: we create a public-private pair in the computer we will use to connect to the remote host. Then we send the public key to the remote host, which will save it and use it to decrypt our SSH petitions. Tpublic key is usually saved in `~/.ssh/authorized_keys`. Now, every time that we connect to our host with computer we won't need the password because the check will be made through the ssh keys. 
+
+To activate SSH keys and deactivate the password access, we must go to the ssh server configuration file `/etc/ssh/sshd_config` and set 
+
++ `PasswordAuthentication no`
++ `PubkeyAuthentication yes`
+
+To create an SSH pair in Ubuntu is easy (there are good alternatives in Wndows such as Puttygen to use with Putty). 
+
+1. Create the key pair in your local computer entering the following in the command line
+
+    `ssh-keygen`
+
+2. You can protect your private key with a password and the process will also warn you, if that is the case, that your are overwriting your current key. Be careful with that.
+3. Your public key will be now at `~/.ssh/id_rsa.pub`. We have to sent this to our server.
+4. We can use the authoatic way if we have still password access `ssh-copy-id -p <port> <username>@<remote_host>` 
+
+    We can also copy it manually by doing the following
+
+    `cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"`
+
+    which basically pipelines the output of cat command (in this case the display of our key) to the ssh call which creates, if it does not exist, the `.ssh` directory and appends the previous output to the `~/.ssh/authorized_keys` file.
+
+5. If we already have shut down password access we will have to do the previous step manually. That is, accessing the server and copying the key to the `~/.ssh/authorized_keys` file.
 
 
+And that is it, we have set the ssh-keys and we have a more secure ssh server. However, there a more ways to secure it further such as `fail2ban`, with this we are good to go.
 
-+ ssh keys
+## Conclusion
 
-## References
+In this project we have been able to set a ssh server in our desktop computer. With this we will be able to run our programs from anywhere directly in our computer. We just connect to our server:
 
-+ [1]: https://hostadvice.com/how-to/how-to-change-your-ssh-port-from-the-default-for-security/ "Recommended port numbers"
-+ [2]: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/ "Set up ssh"
-+ [3]: https://whatismyipaddress.com/ "my public ip"
-+ [4]: https://askubuntu.com/questions/605424/how-to-show-just-the-ip-address-of-my-router "ip of router"
-+ [5]: https://www.lifewire.com/what-is-dhcp-2625848 "dhcp"
-+ [6]: https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/ "Port forwarding"
-+ [7]: https://www.howtogeek.com/184310/ask-htg-should-i-be-setting-static-ip-addresses-on-my-router/ "static local ip"
+`ssh -p <port>  <username>@<hostname>`
 
+and we are inside running our programs.
+
+In the process we have learnt about:
+
++ VNC
++ SSH and its configuration
++ Network fundamentals: 
+    + external and internal IPs
+    + DHCP
+    + port forwarding
+    + static IPs 
+    + router configuration
+    + DNS and dynamic DNS
++ SSH keys securing
+
+However, there is a down side for this system. The server is always up and running, which can be good for a server which is used 24/7/365 but for a home service we may want to use it when it is of convenience. For this in part 2 we will make use of WOL (Wake On Lan) and a Raspberry Pi to act as an always awoke server, while our heavy server is sleep. LEt's get to it.
+
+[1]: https://hostadvice.com/how-to/how-to-change-your-ssh-port-from-the-default-for-security/ "Recommended port numbers"
+[2]: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/ "Set up ssh"
+[3]: https://whatismyipaddress.com/ "my public ip"
+[4]: https://askubuntu.com/questions/605424/how-to-show-just-the-ip-address-of-my-router "ip of router"
+[5]: https://www.lifewire.com/what-is-dhcp-2625848 "dhcp"
+[6]: https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/ "Port forwarding"
+[7]: https://www.howtogeek.com/184310/ask-htg-should-i-be-setting-static-ip-addresses-on-my-router/ "static local ip"
+[8]: https://www.howtogeek.com/66438/how-to-easily-access-your-home-network-from-anywhere-with-ddns/
+[9]: https://www.maketecheasier.com/best-dynamic-dns-providers/
+[10]: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 
 Note: maybe your router allows wake on lan,  mine not --> part 2: raspberry for wake s
 
