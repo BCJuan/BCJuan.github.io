@@ -1,3 +1,14 @@
+---
+layout: post
+title: 'Setting up a personal GPU server. Part 1'
+date: '2020-4-16'
+categories: jekyll update
+published: true
+subtitle: >-
+    Would you like to be able to connect to your GPU station from anywhere, anytime?
+    Run programs remotely and have a centralized server? Here I Show my experience building up a personal server.
+---
+
 # Setting up a personal GPU server. Part 1
 
 In this post I want to explain a little bit my vicissitudes in setting up my desktop computer as a _server_ for GPU computation. Of course, I assume you already have your GPUs working on your computer.  The idea is also to show the steps that I followed in a progressive manner: from VNC in the local network to a ssh accesible computer across the net. Unfortunately for windows users, this guide/story is only for Ubuntu based computers.
