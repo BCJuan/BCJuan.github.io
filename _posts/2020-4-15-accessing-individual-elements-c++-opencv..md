@@ -102,6 +102,6 @@ As seen, we use `cv::Mat::begin()`  and `cv::Mat::end()` functions to start and 
 # Conclusion
 
 We ahve seen three different ways of accessing individual elements in a `cv::Mat` array for C++ OpenCV. In next posts, we will see how to access elements in blocks and iterating through different arrays at the same time.
-
+And remember [always use](https://stackoverflow.com/questions/3259413/should-you-always-use-int-for-numbers-in-c-even-if-they-are-non-negative/3261019#3261019) `std::size_t` when using sizes ()
 
 [1] Depends on compiler optimization
