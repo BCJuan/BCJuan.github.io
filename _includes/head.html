@@ -16,6 +16,9 @@
   {% include gtag.html %}
   {% include gtm_head.html %}
   {% include google_analytics.html %}
+  {% if page.use_math %}
+    {% include mathjax_support.html %}
+  {% endif %}
 
   {% if layout.common-ext-css %}
     {% for css in layout.common-ext-css %}
