@@ -21,7 +21,7 @@ As a teaser, you can see the end of the demo here:
 
 ![](https://github.com/BCJuan/SimpleClassificationApp/raw/master/demo.gif)
 
-The full code is at: ![BCJuan/SimpleClassificationApp](https://github.com/BCJuan/SimpleClassificationApp).
+The full code is at: [BCJuan/SimpleClassificationApp](https://github.com/BCJuan/SimpleClassificationApp).
 
 The post will consist of two parts:
 
@@ -30,7 +30,7 @@ The post will consist of two parts:
 
 ## CameraX backbone
 
-I have read that the CameraX API has ![simplified the work of developers](https://developer.android.com/jetpack/androidx/releases/camera?hl=ru)  compared to Camera 2, but I do not know about that since I have not used Camera 2. What I can say is that using CameraX is not difficult. Let's see how we can do it.
+I have read that the CameraX API has [simplified the work of developers](https://developer.android.com/jetpack/androidx/releases/camera?hl=ru)  compared to Camera 2, but I do not know about that since I have not used Camera 2. What I can say is that using CameraX is not difficult. Let's see how we can do it.
 
 ### Layout
 
@@ -208,9 +208,9 @@ With this we have everything set up with regards to the camera operability. As y
 
 ## Classification
 
-We are going to use a quantized MobileNetV1 model reduced to a 1/4 of its size and using 128x128 images. See the ![model link at TF Hub](https://tfhub.dev/tensorflow/lite-model/mobilenet_v1_0.25_128_quantized/1/metadata/1). It classifies ImageNet classes, so we are also going to need the labels.
+We are going to use a quantized MobileNetV1 model reduced to a 1/4 of its size and using 128x128 images. See the [model link at TF Hub](https://tfhub.dev/tensorflow/lite-model/mobilenet_v1_0.25_128_quantized/1/metadata/1). It classifies ImageNet classes, so we are also going to need the labels.
 
-To add the model you can follow the instructions at ![Android quickstart guide](https://www.tensorflow.org/lite/guide/android) to add the model through ML Binding. This mainly means that you right-click on the Android left panel `res` and add a new file of the type `Other`->`Tensorflow Lite Model`. And that is it. In the case of the labels, you just need to add the `labels.txt` as an asset file by right-click in the android panel -> `New` -> `Assets folder` and creating there a file where the classes are stored.
+To add the model you can follow the instructions at [Android quickstart guide](https://www.tensorflow.org/lite/guide/android) to add the model through ML Binding. This mainly means that you right-click on the Android left panel `res` and add a new file of the type `Other`->`Tensorflow Lite Model`. And that is it. In the case of the labels, you just need to add the `labels.txt` as an asset file by right-click in the android panel -> `New` -> `Assets folder` and creating there a file where the classes are stored.
 
 As seen in the last section, in the image analysis we have called a `classifier.classify`. This comes from a class which holds everything realted to image processing and classification. Let's see:
 
@@ -382,12 +382,12 @@ In this post I have shown how to build a simple Android app to classify objects.
 
 Hope you like it. In next posts, we will try to build more complicated apps with purposes other than classification.
 
-The full code is available at ![BCJuan/SimpleClassificationApp](https://github.com/BCJuan/SimpleClassificationApp).
+The full code is available at [BCJuan/SimpleClassificationApp](https://github.com/BCJuan/SimpleClassificationApp).
 
 # References used to develop this app
 
-+ ![https://codelabs.developers.google.com/codelabs/camerax-getting-started/index.html?index=..%2F..index#1](https://codelabs.developers.google.com/codelabs/camerax-getting-started/index.html?index=..%2F..index#1)
-+ ![https://akhilbattula.medium.com/android-camerax-java-example-aeee884f9102](https://akhilbattula.medium.com/android-camerax-java-example-aeee884f9102)
-+ ![https://stackoverflow.com/questions/56772967/converting-imageproxy-to-bitmap](https://stackoverflow.com/questions/56772967/converting-imageproxy-to-bitmap)
-+ ![https://www.tensorflow.org/lite/guide/android](https://www.tensorflow.org/lite/guide/android)
-+ ![https://www.tensorflow.org/lite/inference_with_metadata/lite_support](https://www.tensorflow.org/lite/inference_with_metadata/lite_support)
++ [https://codelabs.developers.google.com/codelabs/camerax-getting-started/index.html?index=..%2F..index#1](https://codelabs.developers.google.com/codelabs/camerax-getting-started/index.html?index=..%2F..index#1)
++ [https://akhilbattula.medium.com/android-camerax-java-example-aeee884f9102](https://akhilbattula.medium.com/android-camerax-java-example-aeee884f9102)
++ [https://stackoverflow.com/questions/56772967/converting-imageproxy-to-bitmap](https://stackoverflow.com/questions/56772967/converting-imageproxy-to-bitmap)
++ [https://www.tensorflow.org/lite/guide/android](https://www.tensorflow.org/lite/guide/android)
++ [https://www.tensorflow.org/lite/inference_with_metadata/lite_support](https://www.tensorflow.org/lite/inference_with_metadata/lite_support)
