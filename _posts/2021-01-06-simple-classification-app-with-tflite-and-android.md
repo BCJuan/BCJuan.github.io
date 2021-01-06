@@ -19,17 +19,14 @@ I have seen the massive shift that Google has taken towards Kotlin development, 
 
 As a teaser, you can see the end of the demo here:
 
-![](https://github.com/BCJuan/SimpleClassificationApp/blob/master/demo.gif)
+![](https://github.com/BCJuan/SimpleClassificationApp/raw/master/demo.gif)
 
+The full code is at: ![BCJuan/SimpleClassificationApp](https://github.com/BCJuan/SimpleClassificationApp).
 
-The full code is at: ![]
 The post will consist of two parts:
 
 1. CameraX simple backbone
 2. Classification procedure
-    1. Model and label loading
-    2. Image transformation
-    3. Classification
 
 ## CameraX backbone
 
